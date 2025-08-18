@@ -1,0 +1,239 @@
+:root {
+  --rosa: rgba(255,182,193,0.70);
+  --rosa-solido: rgba(255,182,193,0.85);
+  --verde: #8fbc8f;
+  --verde-escuro: #6b8e23;
+  --nude-veil: rgba(255,245,238,0.78);
+  --texto: #2f4f4f;
+  --offset: 88px; /* ajustar se necessário */
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  color: var(--texto);
+  background: url('foto-sobre.jpg') no-repeat center 20% fixed;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--nude-veil);
+  z-index: -1;
+}
+
+header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  background: var(--rosa);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+
+/* Área da logo com imagem + texto centralizados */
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-img {
+  max-height: 60px; /* tamanho da logo */
+  margin-bottom: 5px;
+}
+
+.logo-text {
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: .5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: color .25s, background .25s;
+}
+
+.menu a:hover {
+  color: var(--verde-escuro);
+  background: rgba(255,255,255,.12);
+}
+
+.spacer { height: var(--offset); }
+
+/* Seções */
+section {
+  scroll-margin-top: var(--offset);
+  max-width: 980px;
+  margin: 0 auto 56px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 40px 24px;
+  animation: fadeIn .5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--texto);
+  margin: 0 0 12px;
+}
+
+h1 { font-size: clamp(28px,3.6vw,44px); }
+h2 { font-size: clamp(20px,3vw,30px); }
+
+p {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin: 0 0 14px;
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+  min-height: 66vh;
+  text-align: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.94);
+  border-radius: 16px;
+  padding: 28px 20px;
+  max-width: 820px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 12px 22px;
+  border-radius: 28px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--verde);
+  font-weight: 700;
+  transition: background .25s;
+}
+
+.btn:hover { background: var(--verde-escuro); }
+
+/* Galeria Café & Comunhão */
+.galeria {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+
+.galeria figure {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.galeria img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.galeria figcaption {
+  padding: 10px 12px;
+  font-size: .92rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* Nosso Propósito */
+#proposito {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+  margin-top: 24px;
+}
+
+/* Footer com botões */
+footer {
+  max-width: 980px;
+  margin: 24px auto 48px;
+  padding: 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--rosa-solido);
+  color: #fff;
+  border-radius: 12px;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform .12s, background .12s;
+}
+
+.socials a:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.18);
+}
+
+.copy { font-size: .95rem; opacity: .95; }
+
+/* Responsivo */
+@media (max-width:900px) {
+  .galeria { grid-template-columns: repeat(2,1fr); }
+  .menu { gap: 10px; }
+}
+
+@media (max-width:560px) {
+  :root { --offset: 84px; }
+  .galeria { grid-template-columns: 1fr; }
+  body { background-position: center 30%; }
+  footer { flex-direction: column; gap: 10px; text-align: center; }
+}
