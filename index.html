@@ -16,7 +16,7 @@
       --verde-escuro: #6b8e23;
       --nude-veil: rgba(255,245,238,0.78);
       --texto: #2f4f4f;
-      --offset: 88px; /* altura do header fixo */
+      --offset: 88px;
     }
 
     *{ box-sizing: border-box; }
@@ -36,7 +36,7 @@
       z-index:-1;
     }
 
-    /* Header / menu */
+    /* Header */
     header{
       position: fixed; inset: 0 0 auto 0;
       z-index: 1000;
@@ -53,6 +53,8 @@
       font-weight:600; color:#fff; letter-spacing:.5px;
       font-family:'Playfair Display',serif; font-size:1.3rem;
     }
+
+    /* Menu */
     .menu{ display:flex; gap:16px; }
     .menu a, .menu button{
       color:#fff; text-decoration:none; font-weight:700;
@@ -64,9 +66,43 @@
       color: var(--verde-escuro); background: rgba(255,255,255,.12);
     }
 
+    /* Ícone hambúrguer */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger span {
+      width: 25px; height: 3px;
+      background: white; border-radius: 2px;
+      transition: .3s;
+    }
+
+    /* Menu responsivo */
+    @media (max-width: 820px){
+      .menu { 
+        position: absolute;
+        top: var(--offset);
+        right: 0;
+        background: var(--rosa-solido);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 200px;
+        display: none;
+      }
+      .menu a, .menu button {
+        width: 100%; text-align: left;
+        padding: 14px;
+      }
+      .menu.show { display: flex; }
+      .hamburger { display: flex; }
+    }
+
     .spacer{ height: var(--offset); }
 
-    /* Seções padrão */
+    /* Seções */
     section{
       scroll-margin-top: var(--offset);
       max-width: 980px; margin: 0 auto 56px;
@@ -90,9 +126,9 @@
       max-width:820px; box-shadow:0 8px 22px rgba(0,0,0,.08);
     }
     .hero-logo{
-      width: 240px; /* ajuste aqui se quiser maior/menor */
-      max-width: 55vw;
-      display:block; margin: 0 auto 18px;
+      width: 240px; 
+      max-width: 60vw;
+      display:block; margin: 0 auto 16px;
     }
 
     .btn{
@@ -102,48 +138,6 @@
     }
     .btn:hover{ background:var(--verde-escuro); }
 
-    /* Café & Comunhão (seção separada, começa oculta) */
-    #cafe{
-      display:none; opacity:0; transform: translateY(12px);
-    }
-    #cafe.reveal{
-      display:block;
-      animation: cafeIn .6s ease forwards;
-    }
-    @keyframes cafeIn{ to { opacity:1; transform: translateY(0); } }
-
-    .galeria{ margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .galeria figure{ margin:0; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.08); }
-    .galeria img{ width:100%; height:210px; object-fit:cover; display:block; }
-    .galeria figcaption{ padding:10px 12px; font-size:.92rem; color:#555; font-style:italic; text-align:center; }
-    .texto-cafe{ margin-top: 18px; text-align:center; }
-    .texto-cafe p{ margin:8px 0; }
-
-    /* Formulário de Pré-inscrição */
-    #inscricao form{
-      display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-      max-width:700px; margin:0 auto; text-align:left;
-    }
-    #inscricao .form-field{ display:flex; flex-direction:column; }
-    #inscricao label{ font-weight:700; margin-bottom:6px; color: var(--texto); }
-    #inscricao input, #inscricao textarea{
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 10px;
-      padding: 12px 14px;
-      font: inherit;
-      background: #fff;
-    }
-    #inscricao input:focus, #inscricao textarea:focus{
-      outline: 2px solid var(--rosa);
-      border-color: transparent;
-    }
-    #inscricao .form-full{ grid-column: 1 / -1; }
-    #inscricao .actions{ grid-column: 1 / -1; text-align:center; }
-    #inscricao .form-status{ margin-top:10px; font-size:.95rem; }
-    #inscricao .form-status.ok{ color:#2e7d32; }
-    #inscricao .form-status.err{ color:#c62828; }
-
-    /* Footer */
     footer{
       max-width:980px; margin: 24px auto 48px; padding:18px;
       display:flex; gap:12px; align-items:center; justify-content:space-between;
@@ -157,10 +151,27 @@
       transition: transform .12s, background .12s;
     }
     .socials a:hover{ transform: translateY(-4px); background: rgba(255,255,255,0.18); }
+    .copy{ font-size:.95rem; opacity:.95; }
 
-    /* Responsivo */
-    @media (max-width:900px){ .menu{ gap:10px; } .galeria{ grid-template-columns: repeat(2,1fr); } }
-    @media (max-width:680px){ #inscricao form{ grid-template-columns: 1fr; } }
+    /* Café & Comunhão */
+    #cafe{
+      display:none; opacity:0; transform: translateY(12px);
+    }
+    #cafe.reveal{
+      display:block;
+      animation: cafeIn .6s ease forwards;
+    }
+    @keyframes cafeIn{
+      to { opacity:1; transform: translateY(0); }
+    }
+    .galeria{ margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .galeria figure{ margin:0; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+    .galeria img{ width:100%; height:210px; object-fit:cover; display:block; }
+    .galeria figcaption{ padding:10px 12px; font-size:.92rem; color:#555; font-style:italic; text-align:center; }
+    .texto-cafe{ margin-top: 18px; text-align:center; }
+    .texto-cafe p{ margin:8px 0; }
+
+    @media (max-width:900px){ .galeria{ grid-template-columns: repeat(2,1fr); } }
     @media (max-width:560px){
       :root{ --offset:84px; }
       body{ background-position:center 30%; }
@@ -171,162 +182,101 @@
 </head>
 <body>
 
-  <!-- header/menu -->
   <header>
     <div class="nav">
       <div class="logo">Guardiãs do Lar</div>
-      <nav class="menu" aria-label="Menu principal">
-        <a href="#inicio" data-link="home">Início</a>
-        <a href="#quem-somos" data-link="home">Quem Somos</a>
+
+      <!-- Ícone hambúrguer -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+
+      <nav class="menu" id="menu">
+        <a href="#inicio" onclick="fecharMenu()">Início</a>
+        <a href="#quem-somos" onclick="fecharMenu()">Quem Somos</a>
         <button type="button" onclick="abrirCafe()">Café &amp; Comunhão</button>
-        <a href="#loja" data-link="home">Loja</a>
-        <a href="#mentoria" data-link="home">Mentoria</a>
-        <a href="#proposito" data-link="home">Nosso Propósito</a>
-        <a href="#inscricao" data-link="home">Inscrição</a>
+        <a href="#mentoria" onclick="fecharMenu()">Mentoria</a>
+        <a href="#proposito" onclick="fecharMenu()">Nosso Propósito</a>
       </nav>
     </div>
   </header>
 
-  <div class="spacer" aria-hidden="true"></div>
+  <div class="spacer"></div>
 
-  <!-- ====== CONTEÚDO PRINCIPAL ====== -->
   <div id="main">
-    <!-- Início -->
-    <section id="inicio" class="hero" aria-labelledby="inicio-title">
+    <section id="inicio" class="hero">
       <div class="card">
         <img src="logo.png" alt="Logo Guardiãs do Lar" class="hero-logo">
-        <h1 id="inicio-title">Bem-vinda ao Guardiãs do Lar</h1>
+        <h1>Bem-vinda ao Guardiãs do Lar</h1>
         <p>A sabedoria constrói o lar, o amor o santifica, e a fé o protege.</p>
       </div>
     </section>
 
-    <!-- Quem Somos -->
-    <section id="quem-somos" aria-labelledby="quem-title">
-      <h2 id="quem-title">Quem Somos</h2>
-      <p>Somos esposas que cuidam com amor, mães que ensinam com paciência, donas de casa que transformam ambientes em lares, profissionais que atuam com excelência e, acima de tudo, Filhas de Deus. Vivemos para honrar nosso chamado, equilibrando nossas múltiplas funções com propósito, graça e fé.</p>
+    <section id="quem-somos">
+      <h2>Quem Somos</h2>
+      <p>Somos esposas que cuidam com amor, mães que ensinam com paciência...</p>
     </section>
 
-    <!-- Nosso Propósito -->
-    <section id="proposito" aria-labelledby="prop-title">
-      <h2 id="prop-title">Nosso Propósito</h2>
-      <p>Como mulheres, nosso propósito é viver e ensinar a verdadeira feminilidade, firmada na Palavra e na fé nas verdades de Deus, fortalecendo a identidade feminina e o papel sagrado dentro do lar.</p>
+    <section id="proposito">
+      <h2>Nosso Propósito</h2>
+      <p>A mentoria Guardiãs do Lar nasce para fortalecer mulheres...</p>
     </section>
 
-    <!-- Mentoria -->
-    <section id="mentoria" aria-labelledby="mentoria-title">
-      <h2 id="mentoria-title">Mentoria</h2>
-      <p>A mentoria Guardiãs do Lar nasce para fortalecer mulheres que desejam transformar seus lares em espaços de acolhimento, amor e significado. Nosso propósito é despertar em cada participante o poder de cuidar do lar como um refúgio de paz e comunhão, onde a mesa posta e o propósito caminham juntos para criar momentos de conexão verdadeira.
-
-Queremos ajudar você a redescobrir o valor do cuidado diário, transformando tarefas comuns em rituais de presença e intenção. Acreditamos que, ao cultivar esse olhar cuidadoso, o lar se torna um lugar onde a vida acontece com mais leveza, beleza e propósito.
-
-Ser guardiã do lar é assumir a missão de proteger e nutrir esse espaço sagrado, criando um ambiente que acolhe, inspira e fortalece todos que vivem nele.</p>
-    </section>
-
-    <!-- Pré-Inscrição (DM no WhatsApp) -->
-    <section id="inscricao" aria-labelledby="inscricao-title">
-      <h2 id="inscricao-title">Pré-Inscrição</h2>
-
-      <form id="preInscricaoForm" onsubmit="enviarWhatsApp(event)" novalidate>
-        <div class="form-field">
-          <label for="nome">Nome completo*</label>
-          <input type="text" id="nome" name="nome" required />
-        </div>
-
-        <div class="form-field">
-          <label for="email">E-mail*</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-
-        <div class="form-field">
-          <label for="whatsapp">WhatsApp*</label>
-          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(DDD) 9XXXX-XXXX" required />
-        </div>
-
-        <div class="form-field">
-          <label for="cidade">Cidade/UF</label>
-          <input type="text" id="cidade" name="cidade" />
-        </div>
-
-        <div class="form-field form-full">
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
-        </div>
-
-        <div class="actions">
-          <button type="submit" class="btn" id="btnEnviar">Enviar sua Pré-Inscrição</button>
-          <p id="statusForm" class="form-status" aria-live="polite"></p>
-        </div>
+    <section id="mentoria">
+      <h2>Mentoria</h2>
+      <form onsubmit="enviarPreInscricao(event)">
+        <label>Nome:</label><br>
+        <input type="text" name="nome" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+        <button type="submit" class="btn">Enviar sua pré-inscrição</button>
       </form>
     </section>
 
-    <!-- Loja -->
-    <section id="loja" aria-labelledby="loja-title">
-      <h2 id="loja-title">Loja</h2>
-      <p>Produtos exclusivos para deixar seu lar ainda mais acolhedor.</p>
-    </section>
-
-    <!-- Footer -->
     <footer>
-      <div class="socials" aria-label="Redes sociais">
-        <a href="https://wa.me/5521982842860" target="_blank" rel="noopener noreferrer" title="WhatsApp">📱 Falar no WhatsApp</a>
-        <a href="https://instagram.com/danielebaroli" target="_blank" rel="noopener noreferrer" title="Instagram">📸 Ver Instagram</a>
+      <div class="socials">
+        <a href="https://wa.me/5521982842860" target="_blank">📱 WhatsApp</a>
+        <a href="https://instagram.com/danielebaroli" target="_blank">📸 Instagram</a>
       </div>
-      <div class="copy">© 2025 Guardiãs do Lar — Todos os direitos reservados</div>
+      <div class="copy">© 2025 Guardiãs do Lar</div>
     </footer>
   </div>
-  <!-- ====== /CONTEÚDO PRINCIPAL ====== -->
 
-  <!-- ====== SEÇÃO SEPARADA: CAFÉ & COMUNHÃO (oculta até clicar) ====== -->
-  <section id="cafe" aria-labelledby="cafe-title">
-    <h2 id="cafe-title">Café &amp; Comunhão</h2>
-
-    <div class="galeria" role="list">
-      <figure role="listitem">
-        <img src="foto-cafe1.jpg" alt="Café & Comunhão 1">
-        <figcaption>Amigas reunidas em comunhão</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="foto-cafe2.jpg" alt="Café & Comunhão 2">
-        <figcaption>Café e conversa acolhedora</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="foto-cafe3.jpg" alt="Café & Comunhão 3">
-        <figcaption>Compartilhando experiências</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="foto-cafe4.jpg" alt="Café & Comunhão 4">
-        <figcaption>Ambiente harmonioso</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="foto-cafe5.jpg" alt="Café & Comunhão 5">
-        <figcaption>Momentos de inspiração</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="foto-cafe6.jpg" alt="Café & Comunhão 6">
-        <figcaption>Alegria e fé</figcaption>
-      </figure>
+  <!-- Café & Comunhão -->
+  <section id="cafe">
+    <h2>Café &amp; Comunhão</h2>
+    <div class="galeria">
+      <figure><img src="foto-cafe1.jpg"><figcaption>Amigas reunidas</figcaption></figure>
+      <figure><img src="foto-cafe2.jpg"><figcaption>Café acolhedor</figcaption></figure>
+      <figure><img src="foto-cafe3.jpg"><figcaption>Compartilhando</figcaption></figure>
+      <figure><img src="foto-cafe4.jpg"><figcaption>Ambiente harmonioso</figcaption></figure>
+      <figure><img src="foto-cafe5.jpg"><figcaption>Momentos de fé</figcaption></figure>
+      <figure><img src="foto-cafe6.jpg"><figcaption>Alegria</figcaption></figure>
     </div>
-
     <div class="texto-cafe">
       <p>☕️ Entre e sente-se à mesa com o Pai</p>
       <p>❣️ Acolhendo e cuidando de mulheres através da mesa</p>
     </div>
-
-    <div style="text-align:center; margin-top:18px;">
-      <a class="btn" href="javascript:void(0)" onclick="voltarHome()">Voltar para a página inicial</a>
+    <div style="text-align:center;">
+      <a class="btn" href="javascript:void(0)" onclick="voltarHome()">Voltar</a>
     </div>
   </section>
-  <!-- ====== /CAFÉ & COMUNHÃO ====== -->
 
   <script>
-    // ===== Café & Comunhão =====
+    function toggleMenu(){
+      document.getElementById("menu").classList.toggle("show");
+    }
+    function fecharMenu(){
+      document.getElementById("menu").classList.remove("show");
+    }
     function abrirCafe(){
       document.getElementById('main').style.display = 'none';
       const cafe = document.getElementById('cafe');
-      cafe.classList.remove('reveal'); // reinicia a animação
-      void cafe.offsetWidth;           // força reflow
+      cafe.classList.remove('reveal');
+      void cafe.offsetWidth;
       cafe.classList.add('reveal');
       cafe.scrollIntoView({ behavior:'smooth', block:'start' });
+      fecharMenu();
     }
     function voltarHome(){
       const cafe = document.getElementById('cafe');
@@ -336,57 +286,9 @@ Ser guardiã do lar é assumir a missão de proteger e nutrir esse espaço sagra
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(()=>{ cafe.style.display=''; }, 300);
     }
-    function isCafeAberto(){
-      return getComputedStyle(document.getElementById('main')).display === 'none';
-    }
-    // Links do menu: se Café estiver aberto, fecha e só então rola para a seção
-    document.querySelectorAll('.menu a[data-link="home"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const href = a.getAttribute('href') || '';
-        if(!href.startsWith('#')) return;
-        if(isCafeAberto()){
-          e.preventDefault();
-          const destino = href;
-          voltarHome();
-          setTimeout(()=>{
-            const el = document.querySelector(destino);
-            if(el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); }
-          }, 200);
-        }
-      });
-    });
-
-    // ===== Pré-Inscrição → DM no WhatsApp =====
-    function enviarWhatsApp(event){
+    function enviarPreInscricao(event){
       event.preventDefault();
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const whatsapp = document.getElementById('whatsapp').value.trim();
-      const cidade = document.getElementById('cidade').value.trim();
-      const mensagem = document.getElementById('mensagem').value.trim();
-
-      const statusEl = document.getElementById('statusForm');
-      statusEl.textContent = ""; statusEl.className = "form-status";
-
-      if(!nome || !email || !whatsapp){
-        statusEl.textContent = "Preencha os campos obrigatórios (*).";
-        statusEl.className = "form-status err";
-        return;
-      }
-
-      const texto =
-        "Olá! Quero fazer minha pré-inscrição:%0A" +
-        "Nome: " + encodeURIComponent(nome) + "%0A" +
-        "E-mail: " + encodeURIComponent(email) + "%0A" +
-        "WhatsApp: " + encodeURIComponent(whatsapp) + "%0A" +
-        (cidade ? "Cidade/UF: " + encodeURIComponent(cidade) + "%0A" : "") +
-        (mensagem ? "Mensagem: " + encodeURIComponent(mensagem) : "");
-
-      const url = "https://wa.me/5521969016784?text=" + texto;
-      window.open(url, "_blank");
-
-      statusEl.textContent = "Abrindo o WhatsApp…";
-      statusEl.className = "form-status ok";
+      window.open("https://wa.me/5521969016784", "_blank");
     }
   </script>
 </body>
