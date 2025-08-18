@@ -4,205 +4,139 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Guardiãs do Lar</title>
-
-  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --rosa: rgba(255,182,193,0.70);
-      --rosa-solido: rgba(255,182,193,0.85);
+      --rosa-solid: rgba(255,182,193,0.85);
       --verde: #8fbc8f;
       --verde-escuro: #6b8e23;
       --nude-veil: rgba(255,245,238,0.78);
       --texto: #2f4f4f;
-      --offset: 88px;
+      --offset: 88px; /* altura do header */
     }
-
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family: 'Lato', sans-serif;
-      color: var(--texto);
-      background: url('foto-sobre.jpg') no-repeat center 20% fixed;
-      background-size: cover;
-      position: relative;
+      margin:0; font-family:'Lato',sans-serif; color:var(--texto);
+      background:url('foto-sobre.jpg') no-repeat center 20% fixed; background-size:cover;
+      position:relative;
     }
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      background: var(--nude-veil);
-      z-index:-1;
-    }
+    body::before{content:""; position:fixed; inset:0; background:var(--nude-veil); z-index:-1}
 
-    /* Header */
-    header{
-      position: fixed; inset: 0 0 auto 0;
-      z-index: 1000;
-      background: var(--rosa);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-    .nav{
-      max-width: 1100px; margin: 0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 10px 20px;
-    }
-    .logo{ 
-      font-weight:600; color:#fff; letter-spacing:.5px;
-      font-family:'Playfair Display',serif; font-size:1.3rem;
-    }
+    /* Header fixo */
+    header{position:fixed; inset:0 0 auto 0; z-index:1000; background:var(--rosa); backdrop-filter:blur(6px); box-shadow:0 2px 10px rgba(0,0,0,.06)}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 20px}
+    .logo{color:#fff; font-family:'Playfair Display',serif; font-weight:600; font-size:1.25rem; white-space:nowrap}
 
     /* Menu */
-    .menu{ display:flex; gap:16px; }
-    .menu a, .menu button{
-      color:#fff; text-decoration:none; font-weight:700;
-      padding:8px 10px; border-radius:10px;
-      transition: color .25s, background .25s;
-      background: transparent; border: 0; cursor: pointer; font: inherit;
-    }
-    .menu a:hover, .menu button:hover{
-      color: var(--verde-escuro); background: rgba(255,255,255,.12);
-    }
+    .menu{display:flex; gap:16px; align-items:center}
+    .menu a,.menu button{color:#fff; background:transparent; border:0; cursor:pointer; font:inherit; font-weight:700; text-decoration:none; padding:8px 10px; border-radius:10px; white-space:nowrap; transition:color .25s, background .25s}
+    .menu a:hover,.menu button:hover{color:var(--verde-escuro); background:rgba(255,255,255,.12)}
 
-    /* Ícone hambúrguer */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-    .hamburger span {
-      width: 25px; height: 3px;
-      background: white; border-radius: 2px;
-      transition: .3s;
-    }
+    /* Hamburger */
+    .hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer}
+    .hamburger span{width:25px; height:3px; background:#fff; border-radius:2px}
 
     /* Menu responsivo */
-    @media (max-width: 820px){
-      .menu { 
-        position: absolute;
-        top: var(--offset);
-        right: 0;
-        background: var(--rosa-solido);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        width: 200px;
-        display: none;
-      }
-      .menu a, .menu button {
-        width: 100%; text-align: left;
-        padding: 14px;
-      }
-      .menu.show { display: flex; }
-      .hamburger { display: flex; }
+    @media (max-width:820px){
+      :root{--offset:74px}
+      .hamburger{display:flex}
+      .menu{position:absolute; top:var(--offset); right:0; background:var(--rosa-solid); flex-direction:column; align-items:flex-start; width:220px; display:none; box-shadow:0 6px 16px rgba(0,0,0,.12); border-bottom-left-radius:10px}
+      .menu a,.menu button{width:100%; text-align:left; padding:14px}
+      .menu.show{display:flex}
     }
 
-    .spacer{ height: var(--offset); }
+    .spacer{height:var(--offset)}
 
-    /* Seções */
-    section{
-      scroll-margin-top: var(--offset);
-      max-width: 980px; margin: 0 auto 56px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      padding: 40px 24px;
-      animation: fadeIn .5s ease;
-    }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:none;} }
-
-    h1,h2{ font-family:'Playfair Display',serif; color:var(--texto); margin:0 0 12px; }
-    h1{ font-size: clamp(28px,3.6vw,44px); }
-    h2{ font-size: clamp(20px,3vw,30px); }
-    p{ line-height:1.7; font-size:1.05rem; margin:0 0 14px; }
+    /* Seções padrão */
+    section{scroll-margin-top:var(--offset); max-width:980px; margin:0 auto 56px; background:rgba(255,255,255,.92); border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,.08); padding:40px 24px; animation:fade .45s ease}
+    @keyframes fade{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+    h1,h2{font-family:'Playfair Display',serif; color:var(--texto); margin:0 0 12px}
+    h1{font-size:clamp(28px,3.6vw,44px)}
+    h2{font-size:clamp(20px,3vw,30px)}
+    p{line-height:1.7; font-size:1.05rem; margin:0 0 14px}
 
     /* Hero */
-    .hero{ display:grid; place-items:center; min-height:66vh; text-align:center; }
-    .card{
-      background: rgba(255,255,255,0.94);
-      border-radius:16px; padding:28px 20px;
-      max-width:820px; box-shadow:0 8px 22px rgba(0,0,0,.08);
-    }
-    .hero-logo{
-      width: 240px; 
-      max-width: 60vw;
-      display:block; margin: 0 auto 16px;
-    }
+    .hero{display:grid; place-items:center; min-height:66vh; text-align:center}
+    .card{background:rgba(255,255,255,.94); border-radius:16px; padding:28px 20px; max-width:820px; box-shadow:0 8px 22px rgba(0,0,0,.08)}
+    .hero-logo{width:240px; max-width:60vw; display:block; margin:0 auto 16px}
 
-    .btn{
-      display:inline-block; margin-top:14px; padding:12px 22px; border-radius:28px;
-      text-decoration:none; color:#fff; background:var(--verde);
-      font-weight:700; transition:background .25s;
-    }
-    .btn:hover{ background:var(--verde-escuro); }
+    /* Botões */
+    .btn{display:inline-block; padding:12px 22px; border-radius:28px; text-decoration:none; background:var(--verde); color:#fff; font-weight:700; transition:background .25s}
+    .btn:hover{background:var(--verde-escuro)}
 
-    footer{
-      max-width:980px; margin: 24px auto 48px; padding:18px;
-      display:flex; gap:12px; align-items:center; justify-content:space-between;
-      background: var(--rosa-solido); color:#fff; border-radius:12px;
-    }
-    .socials{ display:flex; gap:10px; align-items:center; }
-    .socials a{
-      display:inline-flex; align-items:center; gap:8px;
-      background: rgba(255,255,255,0.08); color:#fff;
-      text-decoration:none; padding:10px 14px; border-radius:999px; font-weight:700;
-      transition: transform .12s, background .12s;
-    }
-    .socials a:hover{ transform: translateY(-4px); background: rgba(255,255,255,0.18); }
-    .copy{ font-size:.95rem; opacity:.95; }
+    /* Footer */
+    footer{max-width:980px; margin:24px auto 48px; padding:18px; background:var(--rosa-solid); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .socials{display:flex; gap:10px}
+    .socials a{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); color:#fff; text-decoration:none; padding:10px 14px; border-radius:999px; font-weight:700; transition:transform .12s, background .12s}
+    .socials a:hover{transform:translateY(-4px); background:rgba(255,255,255,.18)}
+    .copy{font-size:.95rem; opacity:.95}
 
-    /* Café & Comunhão */
-    #cafe{
-      display:none; opacity:0; transform: translateY(12px);
-    }
-    #cafe.reveal{
-      display:block;
-      animation: cafeIn .6s ease forwards;
-    }
-    @keyframes cafeIn{
-      to { opacity:1; transform: translateY(0); }
-    }
-    .galeria{ margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .galeria figure{ margin:0; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.08); }
-    .galeria img{ width:100%; height:210px; object-fit:cover; display:block; }
-    .galeria figcaption{ padding:10px 12px; font-size:.92rem; color:#555; font-style:italic; text-align:center; }
-    .texto-cafe{ margin-top: 18px; text-align:center; }
-    .texto-cafe p{ margin:8px 0; }
+    /* Café & Comunhão (oculto até clicar) */
+    #cafe{display:none; opacity:0; transform:translateY(12px)}
+    #cafe.reveal{display:block; animation:cafeIn .6s ease forwards}
+    @keyframes cafeIn{to{opacity:1; transform:translateY(0)}}
+    .galeria{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .galeria figure{margin:0; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .galeria img{width:100%; height:210px; object-fit:cover; display:block}
+    .galeria figcaption{padding:10px 12px; font-size:.92rem; color:#555; font-style:italic; text-align:center}
+    .texto-cafe{margin-top:18px; text-align:center}
 
-    @media (max-width:900px){ .galeria{ grid-template-columns: repeat(2,1fr); } }
+    /* PRÉ-INSCRIÇÃO (cartão) */
+    .insc-wrap{padding:2rem 1rem; display:grid; place-items:center}
+    .insc-card{width:100%; max-width:980px; background:rgba(255,255,255,.92); backdrop-filter:blur(4px); border:1px solid rgba(0,0,0,.06); border-radius:18px; box-shadow:0 10px 28px rgba(0,0,0,.08); padding:28px 22px}
+    .insc-card h2{font-family:'Playfair Display',serif; color:#2f4f4f; font-size:clamp(22px,3vw,32px); margin:0 0 14px}
+    .insc-form{display:grid; grid-template-columns:repeat(2,1fr); gap:14px 16px; max-width:860px; margin:0 auto; text-align:left}
+    .insc-field{display:flex; flex-direction:column}
+    .insc-full{grid-column:1 / -1}
+    .insc-field label{font-weight:700; color:#2f4f4f; margin-bottom:6px}
+    .insc-field input,.insc-field textarea{font:inherit; padding:12px 14px; border-radius:12px; border:1px solid rgba(0,0,0,.12); background:#fff; outline:none; transition:box-shadow .2s, border-color .2s}
+    .insc-field textarea{resize:vertical}
+    .insc-field input:focus,.insc-field textarea:focus{border-color:rgba(255,182,193,.6); box-shadow:0 0 0 3px rgba(255,182,193,.25)}
+    .insc-actions{text-align:center; margin-top:.25rem}
+    .insc-btn{display:inline-block; padding:12px 26px; border-radius:999px; border:2px solid var(--verde-escuro); background:var(--verde); color:#fff; font-weight:700; cursor:pointer; transition:filter .2s}
+    .insc-btn:hover{filter:brightness(.95)}
+    .insc-status{margin-top:8px; font-size:.95rem}
+    .insc-status.ok{color:#2e7d32}
+    .insc-status.err{color:#c62828}
+
+    /* Responsivo */
+    @media (max-width:900px){.galeria{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:760px){.insc-form{grid-template-columns:1fr}}
     @media (max-width:560px){
-      :root{ --offset:84px; }
-      body{ background-position:center 30%; }
-      footer{ flex-direction:column; gap:10px; text-align:center; }
-      .galeria{ grid-template-columns:1fr; }
+      :root{--offset:84px}
+      body{background-position:center 30%}
+      footer{flex-direction:column; text-align:center}
+      .galeria{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="nav">
       <div class="logo">Guardiãs do Lar</div>
 
-      <!-- Ícone hambúrguer -->
       <div class="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </div>
 
-      <nav class="menu" id="menu">
+      <nav id="menu" class="menu">
         <a href="#inicio" onclick="fecharMenu()">Início</a>
         <a href="#quem-somos" onclick="fecharMenu()">Quem Somos</a>
         <button type="button" onclick="abrirCafe()">Café &amp; Comunhão</button>
         <a href="#mentoria" onclick="fecharMenu()">Mentoria</a>
         <a href="#proposito" onclick="fecharMenu()">Nosso Propósito</a>
+        <a href="#inscricao" onclick="fecharMenu()">Pré-Inscrição</a>
       </nav>
     </div>
   </header>
 
-  <div class="spacer"></div>
+  <div class="spacer" aria-hidden="true"></div>
 
+  <!-- MAIN (página principal) -->
   <div id="main">
     <section id="inicio" class="hero">
       <div class="card">
@@ -214,82 +148,183 @@
 
     <section id="quem-somos">
       <h2>Quem Somos</h2>
-      <p>Somos esposas que cuidam com amor, mães que ensinam com paciência...</p>
+      <p>Somos esposas que cuidam com amor, mães que ensinam com paciência, donas de casa que transformam ambientes em lares, profissionais que atuam com excelência e, acima de tudo, Filhas de Deus. Vivemos para honrar nosso chamado, equilibrando nossas múltiplas funções com propósito, graça e fé.</p>
     </section>
 
     <section id="proposito">
       <h2>Nosso Propósito</h2>
-      <p>A mentoria Guardiãs do Lar nasce para fortalecer mulheres...</p>
+      <p> Como mulheres, nosso propósito é viver e ensinar a verdadeira feminilidade, firmada na Palavra e na fé nas verdades de Deus, fortalecendo a identidade feminina e o papel sagrado dentro do lar. 
+       A mentoria Guardiãs do Lar nasce para fortalecer mulheres que desejam transformar seus lares em espaços de acolhimento, amor e significado.</p>
+      <p>Queremos ajudar você a redescobrir o valor do cuidado diário, transformando tarefas comuns em rituais de presença e intenção.</p>
+      <p>Ser guardiã do lar é assumir a missão de proteger e nutrir esse espaço sagrado.</p>
     </section>
 
     <section id="mentoria">
       <h2>Mentoria</h2>
-      <form onsubmit="enviarPreInscricao(event)">
-        <label>Nome:</label><br>
-        <input type="text" name="nome" required><br><br>
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
-        <button type="submit" class="btn">Enviar sua pré-inscrição</button>
-      </form>
+      <p>Guardiãs do Lar é mais do que um encontro de ensinamentos é um caminho para transformar o lar em um lugar de paz, propósito e presença de Deus. Aqui, acreditamos que a sabedoria constrói o lar, pois cada decisão guiada pela verdade edifica alicerces firmes. Que o amor santifica, enchendo os ambientes de graça, paciência e cuidado. E que a fé o protege, blindando a família contra as tempestades da vida.
+Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cultivando práticas, valores e hábitos que fortalecem o coração da sua casa e o tornam um refúgio seguro e acolhedor.</p>
     </section>
 
+    <!-- PRÉ-INSCRIÇÃO -->
+    <section id="inscricao" class="insc-wrap" aria-labelledby="insc-title">
+      <div class="insc-card">
+        <h2 id="insc-title">Inscreva-se</h2>
+        <form class="insc-form" onsubmit="enviarPreInscricao(event)" novalidate>
+          <div class="insc-field">
+            <label for="insc-nome">Nome completo*</label>
+            <input type="text" id="insc-nome" required />
+          </div>
+          <div class="insc-field">
+            <label for="insc-email">E-mail*</label>
+            <input type="email" id="insc-email" required />
+          </div>
+          <div class="insc-field">
+            <label for="insc-whats">WhatsApp*</label>
+            <input type="tel" id="insc-whats" placeholder="(DDD) 9XXXX-XXXX" required />
+          </div>
+          <div class="insc-field">
+            <label for="insc-cidade">Cidade/UF</label>
+            <input type="text" id="insc-cidade" placeholder="Ex.: Rio de Janeiro/RJ" />
+          </div>
+          <div class="insc-field insc-full">
+            <label for="insc-msg">Mensagem</label>
+            <textarea id="insc-msg" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
+          </div>
+          <div class="insc-actions insc-full">
+            <button type="submit" class="insc-btn">Enviar pré-inscrição</button>
+            <p id="insc-status" class="insc-status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
       <div class="socials">
         <a href="https://wa.me/5521982842860" target="_blank">📱 WhatsApp</a>
         <a href="https://instagram.com/danielebaroli" target="_blank">📸 Instagram</a>
       </div>
-      <div class="copy">© 2025 Guardiãs do Lar</div>
+      <div class="copy">© 2025 Guardiãs do Lar — Todos os direitos reservados</div>
     </footer>
   </div>
 
-  <!-- Café & Comunhão -->
-  <section id="cafe">
-    <h2>Café &amp; Comunhão</h2>
-    <div class="galeria">
-      <figure><img src="foto-cafe1.jpg"><figcaption>Amigas reunidas</figcaption></figure>
-      <figure><img src="foto-cafe2.jpg"><figcaption>Café acolhedor</figcaption></figure>
-      <figure><img src="foto-cafe3.jpg"><figcaption>Compartilhando</figcaption></figure>
-      <figure><img src="foto-cafe4.jpg"><figcaption>Ambiente harmonioso</figcaption></figure>
-      <figure><img src="foto-cafe5.jpg"><figcaption>Momentos de fé</figcaption></figure>
-      <figure><img src="foto-cafe6.jpg"><figcaption>Alegria</figcaption></figure>
+  <!-- CAFÉ & COMUNHÃO (aparece só quando clica) -->
+  <section id="cafe" aria-labelledby="cafe-title">
+    <h2 id="cafe-title">Café &amp; Comunhão</h2>
+    <div class="galeria" role="list">
+      <figure role="listitem"><img src="foto-cafe1.jpg" alt=""><figcaption>Amigas reunidas</figcaption></figure>
+      <figure role="listitem"><img src="foto-cafe2.jpg" alt=""><figcaption>Café acolhedor</figcaption></figure>
+      <figure role="listitem"><img src="foto-cafe3.jpg" alt=""><figcaption>Compartilhando</figcaption></figure>
+      <figure role="listitem"><img src="foto-cafe4.jpg" alt=""><figcaption>Ambiente harmonioso</figcaption></figure>
+      <figure role="listitem"><img src="foto-cafe5.jpg" alt=""><figcaption>Momentos de inspiração</figcaption></figure>
+      <figure role="listitem"><img src="foto-cafe6.jpg" alt=""><figcaption>Alegria e fé</figcaption></figure>
     </div>
     <div class="texto-cafe">
       <p>☕️ Entre e sente-se à mesa com o Pai</p>
       <p>❣️ Acolhendo e cuidando de mulheres através da mesa</p>
     </div>
-    <div style="text-align:center;">
-      <a class="btn" href="javascript:void(0)" onclick="voltarHome()">Voltar</a>
+    <div style="text-align:center; margin-top:18px;">
+      <a class="btn" href="javascript:void(0)" onclick="voltarHome()">Voltar para a página inicial</a>
     </div>
   </section>
 
   <script>
-    function toggleMenu(){
-      document.getElementById("menu").classList.toggle("show");
-    }
-    function fecharMenu(){
-      document.getElementById("menu").classList.remove("show");
-    }
+    /* Menu hambúrguer */
+    function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
+    function fecharMenu(){ document.getElementById('menu').classList.remove('show'); }
+
+    /* Café & Comunhão como “página” separada */
     function abrirCafe(){
       document.getElementById('main').style.display = 'none';
       const cafe = document.getElementById('cafe');
-      cafe.classList.remove('reveal');
-      void cafe.offsetWidth;
+      cafe.classList.remove('reveal'); void cafe.offsetWidth; /* reinicia animação */
       cafe.classList.add('reveal');
-      cafe.scrollIntoView({ behavior:'smooth', block:'start' });
+      cafe.scrollIntoView({behavior:'smooth', block:'start'});
       fecharMenu();
     }
     function voltarHome(){
       const cafe = document.getElementById('cafe');
       cafe.classList.remove('reveal');
-      cafe.style.display = 'none';
-      document.getElementById('main').style.display = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(()=>{ cafe.style.display=''; }, 300);
+      cafe.style.display='none';
+      document.getElementById('main').style.display='';
+      window.scrollTo({top:0, behavior:'smooth'});
+      setTimeout(()=>{cafe.style.display='';},300);
     }
-    function enviarPreInscricao(event){
-      event.preventDefault();
-      window.open("https://wa.me/5521969016784", "_blank");
+
+    /* Pré-inscrição → DM no WhatsApp */
+    function enviarPreInscricao(e){
+      e.preventDefault();
+      const nome = document.getElementById('insc-nome').value.trim();
+      const email = document.getElementById('insc-email').value.trim();
+      const whats = document.getElementById('insc-whats').value.trim();
+      const cidade = document.getElementById('insc-cidade').value.trim();
+      const msg = document.getElementById('insc-msg').value.trim();
+      const s = document.getElementById('insc-status');
+      s.textContent=""; s.className="insc-status";
+      if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
+      const texto =
+        "Olá! Quero fazer minha pré-inscrição:%0A"+
+        "Nome: "+encodeURIComponent(nome)+"%0A"+
+        "E-mail: "+encodeURIComponent(email)+"%0A"+
+        "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
+        (cidade? "Cidade/UF: "+encodeURIComponent(cidade)+"%0A":"")+
+        (msg? "Mensagem: "+encodeURIComponent(msg):"");
+      window.open("https://wa.me/5521969016784?text="+texto,"_blank");
+      s.textContent="Abrindo o WhatsApp…"; s.classList.add('ok');
     }
   </script>
 </body>
 </html>
+<script>
+  /* Menu hambúrguer */
+  function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
+  function fecharMenu(){ document.getElementById('menu').classList.remove('show'); }
+
+  /* Café & Comunhão como “página” separada */
+  function abrirCafe(){
+    document.getElementById('main').style.display = 'none';
+    const cafe = document.getElementById('cafe');
+    cafe.classList.remove('reveal'); void cafe.offsetWidth; /* reinicia animação */
+    cafe.classList.add('reveal');
+    cafe.scrollIntoView({behavior:'smooth', block:'start'});
+    fecharMenu();
+  }
+  function voltarHome(){
+    const cafe = document.getElementById('cafe');
+    cafe.classList.remove('reveal');
+    cafe.style.display='none';
+    document.getElementById('main').style.display='';
+    window.scrollTo({top:0, behavior:'smooth'});
+    setTimeout(()=>{cafe.style.display='';},300);
+  }
+
+  /* 🔥 NOVO: garantir que qualquer link do menu volta pro main */
+  document.querySelectorAll('.menu a[href^="#"]').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      document.getElementById('main').style.display='';
+      document.getElementById('cafe').style.display='none';
+    });
+  });
+
+  /* Pré-inscrição → DM no WhatsApp */
+  function enviarPreInscricao(e){
+    e.preventDefault();
+    const nome = document.getElementById('insc-nome').value.trim();
+    const email = document.getElementById('insc-email').value.trim();
+    const whats = document.getElementById('insc-whats').value.trim();
+    const cidade = document.getElementById('insc-cidade').value.trim();
+    const msg = document.getElementById('insc-msg').value.trim();
+    const s = document.getElementById('insc-status');
+    s.textContent=""; s.className="insc-status";
+    if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
+    const texto =
+      "Olá! Quero fazer minha pré-inscrição:%0A"+
+      "Nome: "+encodeURIComponent(nome)+"%0A"+
+      "E-mail: "+encodeURIComponent(email)+"%0A"+
+      "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
+      (cidade? "Cidade/UF: "+encodeURIComponent(cidade)+"%0A":"")+
+      (msg? "Mensagem: "+encodeURIComponent(msg):"");
+    window.open("https://wa.me/5521969016784?text="+texto,"_blank");
+    s.textContent="Abrindo o WhatsApp…"; s.classList.add('ok');
+  }
+</script>
