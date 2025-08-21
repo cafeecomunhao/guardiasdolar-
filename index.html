@@ -132,7 +132,7 @@
         <button type="button" onclick="abrirCafe()">Café &amp; Comunhão</button>
         <a href="#mentoria" onclick="fecharMenu()">Mentoria</a>
         <a href="#proposito" onclick="fecharMenu()">Nosso Propósito</a>
-        <a href="#inscricao" onclick="fecharMenu()">Pré-Inscrição</a>
+        <a href="#inscricao" onclick="fecharMenu()">Para mais informações</a>
       </nav>
     </div>
   </header>
@@ -162,16 +162,43 @@
       <p>Ser guardiã do lar é assumir a missão de proteger e nutrir esse espaço sagrado.</p>
     </section>
 
+    <!-- ======= ÚNICA PARTE ALTERADA ======= -->
     <section id="mentoria">
       <h2>Mentoria</h2>
-      <p>Guardiãs do Lar é mais do que um encontro de ensinamentos é um caminho para transformar o lar em um lugar de paz, propósito e presença de Deus. Aqui, acreditamos que a sabedoria constrói o lar, pois cada decisão guiada pela verdade edifica alicerces firmes. Que o amor santifica, enchendo os ambientes de graça, paciência e cuidado. E que a fé o protege, blindando a família contra as tempestades da vida.
-Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cultivando práticas, valores e hábitos que fortalecem o coração da sua casa e o tornam um refúgio seguro e acolhedor.</p>
+
+      <p>Guardiãs do Lar é mais do que um encontro de ensinamentos é um caminho para transformar o lar em um lugar de paz, propósito e presença de Deus. Aqui, acreditamos que a sabedoria constrói o lar, pois cada decisão guiada pela verdade edifica alicerces firmes. Que o amor santifica, enchendo os ambientes de graça, paciência e cuidado. E que a fé o protege, blindando a família contra as tempestades da vida.</p>
+      <p>Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cultivando práticas, valores e hábitos que fortalecem o coração da sua casa e o tornam um refúgio seguro e acolhedor.</p>
+      <p>Mentoria Guardiãs do Lar, um encontro pensado com carinho para mulheres que desejam crescer em fé, propósito e no cuidado do lar.</p>
+
+      <hr style="margin:22px 0; border:none; border-top:1px solid #ddd;">
+
+      <h3 style="margin-top:0;">📅 Data &amp; ⏰ Horário</h3>
+      <p><strong>20 de setembro de 2025</strong> — <strong>8h30 às 17h30</strong></p>
+
+      <hr style="margin:18px 0; border:none; border-top:1px solid #eee;">
+
+      <h3>📍 Local</h3>
+      <p>Sítio Portugal – Estrada do Tingui, 2500 – Campo Grande, RJ</p>
+
+      <hr style="margin:18px 0; border:none; border-top:1px solid #eee;">
+
+      <h3>✨ Durante esse dia especial, você terá</h3>
+      <ul>
+        <li>☕ Café da manhã para começarmos juntas com energia e comunhão.</li>
+        <li>🍲 Almoço incluso, preparado para ser um momento de renovo.</li>
+        <li>🍰 Café da tarde para encerrarmos o encontro em um clima de gratidão.</li>
+      </ul>
+
+      <hr style="margin:18px 0; border:none; border-top:1px solid #eee;">
+
+      <p><em>Para informações e valores, contate-nos abaixo.</em></p>
     </section>
+    <!-- ======= FIM DA ÚNICA PARTE ALTERADA ======= -->
 
     <!-- Saiba Mais -->
     <section id="inscricao" class="insc-wrap" aria-labelledby="insc-title">
       <div class="insc-card">
-        <h2 id="insc-title">Inscreva-se</h2>
+        <h2 id="insc-title">Para mais informações</h2>
         <form class="insc-form" onsubmit="enviarPreInscricao(event)" novalidate>
           <div class="insc-field">
             <label for="insc-nome">Nome completo*</label>
@@ -194,7 +221,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
             <textarea id="insc-msg" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
           </div>
           <div class="insc-actions insc-full">
-            <button type="submit" class="insc-btn">Enviar pré-inscrição</button>
+            <button type="submit" class="insc-btn">Enviar Dados</button>
             <p id="insc-status" class="insc-status" aria-live="polite"></p>
           </div>
         </form>
@@ -255,7 +282,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
     }
 
     /* Saiba Mais → DM no WhatsApp */
-    function enviarPreInscricao(e){
+    function enviar(e){
       e.preventDefault();
       const nome = document.getElementById('insc-nome').value.trim();
       const email = document.getElementById('insc-email').value.trim();
@@ -266,7 +293,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
       s.textContent=""; s.className="insc-status";
       if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
       const texto =
-        "Olá! Quero fazer mais informações:%0A"+
+        "Olá! Quero mais informações:%0A"+
         "Nome: "+encodeURIComponent(nome)+"%0A"+
         "E-mail: "+encodeURIComponent(email)+"%0A"+
         "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
@@ -310,7 +337,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
   });
 
   /* Saiba Mais → DM no WhatsApp */
-  function enviarPreInscricao(e){
+  function enviarEnviar(e){
     e.preventDefault();
     const nome = document.getElementById('insc-nome').value.trim();
     const email = document.getElementById('insc-email').value.trim();
