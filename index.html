@@ -14,7 +14,10 @@
       --nude-veil: rgba(255,245,238,0.78);
       --texto: #2f4f4f;
       --offset: 88px; /* altura do header */
-    }
+    } 
+
+
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -165,7 +168,7 @@
 Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cultivando práticas, valores e hábitos que fortalecem o coração da sua casa e o tornam um refúgio seguro e acolhedor.</p>
     </section>
 
-    <!-- PRÉ-INSCRIÇÃO -->
+    <!-- Saiba Mais -->
     <section id="inscricao" class="insc-wrap" aria-labelledby="insc-title">
       <div class="insc-card">
         <h2 id="insc-title">Inscreva-se</h2>
@@ -251,7 +254,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
       setTimeout(()=>{cafe.style.display='';},300);
     }
 
-    /* Pré-inscrição → DM no WhatsApp */
+    /* Saiba Mais → DM no WhatsApp */
     function enviarPreInscricao(e){
       e.preventDefault();
       const nome = document.getElementById('insc-nome').value.trim();
@@ -263,7 +266,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
       s.textContent=""; s.className="insc-status";
       if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
       const texto =
-        "Olá! Quero fazer minha pré-inscrição:%0A"+
+        "Olá! Quero fazer mais informações:%0A"+
         "Nome: "+encodeURIComponent(nome)+"%0A"+
         "E-mail: "+encodeURIComponent(email)+"%0A"+
         "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
@@ -306,7 +309,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
     });
   });
 
-  /* Pré-inscrição → DM no WhatsApp */
+  /* Saiba Mais → DM no WhatsApp */
   function enviarPreInscricao(e){
     e.preventDefault();
     const nome = document.getElementById('insc-nome').value.trim();
@@ -318,7 +321,7 @@ Nesta mentoria, você será conduzida a redescobrir seu papel como guardiã, cul
     s.textContent=""; s.className="insc-status";
     if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
     const texto =
-      "Olá! Quero fazer minha pré-inscrição:%0A"+
+      "Saiba Mais:%0A"+
       "Nome: "+encodeURIComponent(nome)+"%0A"+
       "E-mail: "+encodeURIComponent(email)+"%0A"+
       "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
