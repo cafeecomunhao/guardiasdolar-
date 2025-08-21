@@ -16,8 +16,6 @@
       --offset: 88px; /* altura do header */
     } 
 
-
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -132,7 +130,7 @@
         <button type="button" onclick="abrirCafe()">Café &amp; Comunhão</button>
         <a href="#mentoria" onclick="fecharMenu()">Mentoria</a>
         <a href="#proposito" onclick="fecharMenu()">Nosso Propósito</a>
-        <a href="#inscricao" onclick="fecharMenu()">Para mais informações</a>
+        <a href="#inscricao" onclick="fecharMenu()">Mais informações</a>
       </nav>
     </div>
   </header>
@@ -162,7 +160,7 @@
       <p>Ser guardiã do lar é assumir a missão de proteger e nutrir esse espaço sagrado.</p>
     </section>
 
-    <!-- ======= ÚNICA PARTE ALTERADA ======= -->
+    <!-- ======= MENTORIA ======= -->
     <section id="mentoria">
       <h2>Mentoria</h2>
 
@@ -193,13 +191,12 @@
 
       <p><em>Para informações e valores, contate-nos abaixo.</em></p>
     </section>
-    <!-- ======= FIM DA ÚNICA PARTE ALTERADA ======= -->
 
-    <!-- Saiba Mais -->
+    <!-- ======= MAIS INFORMAÇÕES ======= -->
     <section id="inscricao" class="insc-wrap" aria-labelledby="insc-title">
       <div class="insc-card">
         <h2 id="insc-title">Para mais informações</h2>
-        <form class="insc-form" onsubmit="enviarPreInscricao(event)" novalidate>
+        <form class="insc-form" onsubmit="enviar(event)" novalidate>
           <div class="insc-field">
             <label for="insc-nome">Nome completo*</label>
             <input type="text" id="insc-nome" required />
@@ -246,115 +243,4 @@
       <figure role="listitem"><img src="foto-cafe2.jpg" alt=""><figcaption>Café acolhedor</figcaption></figure>
       <figure role="listitem"><img src="foto-cafe3.jpg" alt=""><figcaption>Compartilhando</figcaption></figure>
       <figure role="listitem"><img src="foto-cafe4.jpg" alt=""><figcaption>Ambiente harmonioso</figcaption></figure>
-      <figure role="listitem"><img src="foto-cafe5.jpg" alt=""><figcaption>Momentos de inspiração</figcaption></figure>
-      <figure role="listitem"><img src="foto-cafe6.jpg" alt=""><figcaption>Alegria e fé</figcaption></figure>
-    </div>
-    <div class="texto-cafe">
-      <p>☕️ Entre e sente-se à mesa com o Pai</p>
-      <p>❣️ Acolhendo e cuidando de mulheres através da mesa</p>
-    </div>
-    <div style="text-align:center; margin-top:18px;">
-      <a class="btn" href="javascript:void(0)" onclick="voltarHome()">Voltar para a página inicial</a>
-    </div>
-  </section>
-
-  <script>
-    /* Menu hambúrguer */
-    function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
-    function fecharMenu(){ document.getElementById('menu').classList.remove('show'); }
-
-    /* Café & Comunhão como “página” separada */
-    function abrirCafe(){
-      document.getElementById('main').style.display = 'none';
-      const cafe = document.getElementById('cafe');
-      cafe.classList.remove('reveal'); void cafe.offsetWidth; /* reinicia animação */
-      cafe.classList.add('reveal');
-      cafe.scrollIntoView({behavior:'smooth', block:'start'});
-      fecharMenu();
-    }
-    function voltarHome(){
-      const cafe = document.getElementById('cafe');
-      cafe.classList.remove('reveal');
-      cafe.style.display='none';
-      document.getElementById('main').style.display='';
-      window.scrollTo({top:0, behavior:'smooth'});
-      setTimeout(()=>{cafe.style.display='';},300);
-    }
-
-    /* Saiba Mais → DM no WhatsApp */
-    function enviar(e){
-      e.preventDefault();
-      const nome = document.getElementById('insc-nome').value.trim();
-      const email = document.getElementById('insc-email').value.trim();
-      const whats = document.getElementById('insc-whats').value.trim();
-      const cidade = document.getElementById('insc-cidade').value.trim();
-      const msg = document.getElementById('insc-msg').value.trim();
-      const s = document.getElementById('insc-status');
-      s.textContent=""; s.className="insc-status";
-      if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
-      const texto =
-        "Olá! Quero mais informações:%0A"+
-        "Nome: "+encodeURIComponent(nome)+"%0A"+
-        "E-mail: "+encodeURIComponent(email)+"%0A"+
-        "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
-        (cidade? "Cidade/UF: "+encodeURIComponent(cidade)+"%0A":"")+
-        (msg? "Mensagem: "+encodeURIComponent(msg):"");
-      window.open("https://wa.me/5521969016784?text="+texto,"_blank");
-      s.textContent="Abrindo o WhatsApp…"; s.classList.add('ok');
-    }
-  </script>
-</body>
-</html>
-<script>
-  /* Menu hambúrguer */
-  function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
-  function fecharMenu(){ document.getElementById('menu').classList.remove('show'); }
-
-  /* Café & Comunhão como “página” separada */
-  function abrirCafe(){
-    document.getElementById('main').style.display = 'none';
-    const cafe = document.getElementById('cafe');
-    cafe.classList.remove('reveal'); void cafe.offsetWidth; /* reinicia animação */
-    cafe.classList.add('reveal');
-    cafe.scrollIntoView({behavior:'smooth', block:'start'});
-    fecharMenu();
-  }
-  function voltarHome(){
-    const cafe = document.getElementById('cafe');
-    cafe.classList.remove('reveal');
-    cafe.style.display='none';
-    document.getElementById('main').style.display='';
-    window.scrollTo({top:0, behavior:'smooth'});
-    setTimeout(()=>{cafe.style.display='';},300);
-  }
-
-  /* 🔥 NOVO: garantir que qualquer link do menu volta pro main */
-  document.querySelectorAll('.menu a[href^="#"]').forEach(link=>{
-    link.addEventListener('click', ()=>{
-      document.getElementById('main').style.display='';
-      document.getElementById('cafe').style.display='none';
-    });
-  });
-
-  /* Saiba Mais → DM no WhatsApp */
-  function enviarEnviar(e){
-    e.preventDefault();
-    const nome = document.getElementById('insc-nome').value.trim();
-    const email = document.getElementById('insc-email').value.trim();
-    const whats = document.getElementById('insc-whats').value.trim();
-    const cidade = document.getElementById('insc-cidade').value.trim();
-    const msg = document.getElementById('insc-msg').value.trim();
-    const s = document.getElementById('insc-status');
-    s.textContent=""; s.className="insc-status";
-    if(!nome || !email || !whats){ s.textContent="Preencha os campos obrigatórios (*)."; s.classList.add('err'); return; }
-    const texto =
-      "Saiba Mais:%0A"+
-      "Nome: "+encodeURIComponent(nome)+"%0A"+
-      "E-mail: "+encodeURIComponent(email)+"%0A"+
-      "WhatsApp: "+encodeURIComponent(whats)+"%0A"+
-      (cidade? "Cidade/UF: "+encodeURIComponent(cidade)+"%0A":"")+
-      (msg? "Mensagem: "+encodeURIComponent(msg):"");
-    window.open("https://wa.me/5521969016784?text="+texto,"_blank");
-    s.textContent="Abrindo o WhatsApp…"; s.classList.add('ok');
-  }
-</script>
+      <figure role="list
